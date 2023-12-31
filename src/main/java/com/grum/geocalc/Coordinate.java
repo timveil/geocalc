@@ -31,8 +31,6 @@
  */
 
 package com.grum.geocalc;
-import lombok.val;
-import lombok.var;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

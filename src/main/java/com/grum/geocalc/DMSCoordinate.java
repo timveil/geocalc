@@ -34,7 +34,6 @@ package com.grum.geocalc;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.var;
 
 import static java.lang.Math.abs;
 

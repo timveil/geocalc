@@ -13,8 +13,6 @@
 package com.grum.geocalc;
 
 import lombok.extern.slf4j.Slf4j;
-import lombok.val;
-import lombok.var;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
