@@ -64,11 +64,11 @@ abstract public class Coordinate implements Serializable {
     }
 
     DMSCoordinate toDMSCoordinate() {
-        val wholeDegrees = (int) degrees();
-        var remaining = abs(degrees() - wholeDegrees);
-        val minutes = (int) (remaining * 60);
+        int wholeDegrees = (int) degrees();
+        double remaining = abs(degrees() - wholeDegrees);
+        int minutes = (int) (remaining * 60);
         remaining = remaining * 60 - minutes;
-        val seconds = new BigDecimal(remaining * 60).setScale(4, RoundingMode.HALF_UP).doubleValue();
+        double seconds = new BigDecimal(remaining * 60).setScale(4, RoundingMode.HALF_UP).doubleValue();
 
         return new DMSCoordinate(wholeDegrees, minutes, seconds);
     }
@@ -78,9 +78,9 @@ abstract public class Coordinate implements Serializable {
     }
 
     GPSCoordinate toGPSCoordinate() {
-        val wholeDegrees = floor(degrees());
-        val remaining = degrees() - wholeDegrees;
-        val minutes = floor(remaining * 60);
+        double wholeDegrees = floor(degrees());
+        double remaining = degrees() - wholeDegrees;
+        double minutes = floor(remaining * 60);
 
         return new GPSCoordinate(wholeDegrees, minutes);
     }

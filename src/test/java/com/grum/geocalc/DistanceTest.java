@@ -25,27 +25,27 @@ public class DistanceTest {
     @Test
     public void testSphericalLawOfCosinesDistance() {
         //Kew
-        var lat = Coordinate.fromDegrees(51.4843774);
-        var lng = Coordinate.fromDegrees(-0.2912044);
-        val kew = Point.at(lat, lng);
+        DegreeCoordinate lat = Coordinate.fromDegrees(51.4843774);
+        DegreeCoordinate lng = Coordinate.fromDegrees(-0.2912044);
+        Point kew = Point.at(lat, lng);
 
         //Richmond
         lat = Coordinate.fromDegrees(51.4613418);
         lng = Coordinate.fromDegrees(-0.3035466);
-        val richmond = Point.at(lat, lng);
+        Point richmond = Point.at(lat, lng);
 
         assertEquals(2694.283076925272, EarthCalc.gcd.distance(richmond, kew), 10E-3);
     }
 
     @Test
     public void testDistanceBnaToLax() {
-        var lat = Coordinate.fromDegrees(36.12);
-        var lng = Coordinate.fromDegrees(-86.97);
-        val BNA = Point.at(lat, lng);
+        DegreeCoordinate lat = Coordinate.fromDegrees(36.12);
+        DegreeCoordinate lng = Coordinate.fromDegrees(-86.97);
+        Point BNA = Point.at(lat, lng);
 
         lat = Coordinate.fromDegrees(33.94);
         lng = Coordinate.fromDegrees(-118.40);
-        val LAX = Point.at(lat, lng);
+        Point LAX = Point.at(lat, lng);
 
         assertEquals(2853187.0080671725, EarthCalc.gcd.distance(LAX, BNA), 10E-3);
     }
@@ -53,16 +53,16 @@ public class DistanceTest {
     @Test
     public void testDistanceToBuenosAires() {
         //Kew
-        var lat = Coordinate.fromDMS(51, 29, 3.7572);
-        var lng = Coordinate.fromDMS(0, 17, 28.3338);
+        DMSCoordinate lat = Coordinate.fromDMS(51, 29, 3.7572);
+        DMSCoordinate lng = Coordinate.fromDMS(0, 17, 28.3338);
 
-        val kew = Point.at(lat, lng);
+        Point kew = Point.at(lat, lng);
 
         //Buenos Aires
         lat = Coordinate.fromDMS(-34, 36, 35.9994);
         lng = Coordinate.fromDMS(-58, 22, 11.9994);
 
-        val buenosAires = Point.at(lat, lng);
+        Point buenosAires = Point.at(lat, lng);
 
         assertEquals(11121, (int) (EarthCalc.gcd.distance(buenosAires, kew) / 1000)); //km
     }
@@ -70,16 +70,16 @@ public class DistanceTest {
     @Test
     public void testHaversineDistanceToBuenosAires() {
         //Kew
-        var lat = Coordinate.fromDMS(51, 29, 3.7572);
-        var lng = Coordinate.fromDMS(0, 17, 28.3338);
+        DMSCoordinate lat = Coordinate.fromDMS(51, 29, 3.7572);
+        DMSCoordinate lng = Coordinate.fromDMS(0, 17, 28.3338);
 
-        val kew = Point.at(lat, lng);
+        Point kew = Point.at(lat, lng);
 
         //Buenos Aires
         lat = Coordinate.fromDMS(-34, 36, 35.9994);
         lng = Coordinate.fromDMS(-58, 22, 11.9994);
 
-        val buenosAires = Point.at(lat, lng);
+        Point buenosAires = Point.at(lat, lng);
 
         assertEquals(11121, (int) (EarthCalc.haversine.distance(buenosAires, kew) / 1000)); //km
     }
@@ -87,16 +87,16 @@ public class DistanceTest {
     @Test
     public void testVincentyDistanceToBuenosAires() {
         //Kew
-        var lat = Coordinate.fromDMS(51, 29, 3.7572);
-        var lng = Coordinate.fromDMS(0, 17, 28.3338);
+        DMSCoordinate lat = Coordinate.fromDMS(51, 29, 3.7572);
+        DMSCoordinate lng = Coordinate.fromDMS(0, 17, 28.3338);
 
-        val kew = Point.at(lat, lng);
+        Point kew = Point.at(lat, lng);
 
         //Buenos Aires
         lat = Coordinate.fromDMS(-34, 36, 35.9994);
         lng = Coordinate.fromDMS(-58, 22, 11.9994);
 
-        val buenosAires = Point.at(lat, lng);
+        Point buenosAires = Point.at(lat, lng);
 
         assertEquals(11120, (int) (EarthCalc.vincenty.distance(buenosAires, kew) / 1000)); //km
     }
@@ -104,14 +104,14 @@ public class DistanceTest {
     @Test
     public void testSymmetricDistance() {
         //Kew
-        var lat = Coordinate.fromDegrees(51.4843774);
-        var lng = Coordinate.fromDegrees(-0.2912044);
-        val kew = Point.at(lat, lng);
+        DegreeCoordinate lat = Coordinate.fromDegrees(51.4843774);
+        DegreeCoordinate lng = Coordinate.fromDegrees(-0.2912044);
+        Point kew = Point.at(lat, lng);
 
         //Richmond
         lat = Coordinate.fromDegrees(51.4613418);
         lng = Coordinate.fromDegrees(-0.3035466);
-        val richmond = Point.at(lat, lng);
+        Point richmond = Point.at(lat, lng);
 
         assertEquals(EarthCalc.gcd.distance(richmond, kew), EarthCalc.gcd.distance(kew, richmond), 10E-10);
     }
@@ -119,9 +119,9 @@ public class DistanceTest {
     @Test
     public void testZeroDistance() {
         //Kew
-        val lat = Coordinate.fromDegrees(51.4843774);
-        val lng = Coordinate.fromDegrees(-0.2912044);
-        val kew = Point.at(lat, lng);
+        DegreeCoordinate lat = Coordinate.fromDegrees(51.4843774);
+        DegreeCoordinate lng = Coordinate.fromDegrees(-0.2912044);
+        Point kew = Point.at(lat, lng);
 
         assertEquals(0, EarthCalc.gcd.distance(kew, kew), 0);
         assertEquals(0, EarthCalc.vincenty.distance(kew, kew), 0);
@@ -131,9 +131,9 @@ public class DistanceTest {
     @Test
     public void testZeroDistanceWaldshutGermany() {
         //Kew
-        val lat = Coordinate.fromDegrees(47.62285);
-        val lng = Coordinate.fromDegrees(8.20897);
-        val waldshut = Point.at(lat, lng);
+        DegreeCoordinate lat = Coordinate.fromDegrees(47.62285);
+        DegreeCoordinate lng = Coordinate.fromDegrees(8.20897);
+        Point waldshut = Point.at(lat, lng);
 
         assertEquals(0, EarthCalc.gcd.distance(waldshut, waldshut), 0);
         assertEquals(0, EarthCalc.vincenty.distance(waldshut, waldshut), 0);
@@ -143,45 +143,45 @@ public class DistanceTest {
     @Test
     public void testBoundingAreaDistance() {
         //Kew
-        val lat = Coordinate.fromDegrees(51.4843774);
-        val lng = Coordinate.fromDegrees(-0.2912044);
-        val kew = Point.at(lat, lng);
+        DegreeCoordinate lat = Coordinate.fromDegrees(51.4843774);
+        DegreeCoordinate lng = Coordinate.fromDegrees(-0.2912044);
+        Point kew = Point.at(lat, lng);
 
-        val area = EarthCalc.gcd.around(kew, 3000);
+        BoundingArea area = EarthCalc.gcd.around(kew, 3000);
 
-        val northEastDistance = EarthCalc.gcd.distance(kew, area.northEast);
+        double northEastDistance = EarthCalc.gcd.distance(kew, area.northEast);
         assertEquals(3000d, northEastDistance, 1E-3);
 
-        val southWestDistance = EarthCalc.gcd.distance(kew, area.southWest);
+        double southWestDistance = EarthCalc.gcd.distance(kew, area.southWest);
         assertEquals(3000d, southWestDistance, 1E-3);
 
-        val northWest = area.northWest;
-        val northWestDistance = EarthCalc.gcd.distance(kew, northWest);
+        Point northWest = area.northWest;
+        double northWestDistance = EarthCalc.gcd.distance(kew, northWest);
         assertEquals(3000d, northWestDistance, 2);
 
-        val southEast = area.southEast;
-        val southEastDistance = EarthCalc.gcd.distance(kew, southEast);
+        Point southEast = area.southEast;
+        double southEastDistance = EarthCalc.gcd.distance(kew, southEast);
         assertEquals(3000d, southEastDistance, 2);
 
-        val middleNorth = Point.at(Coordinate.fromDegrees(area.northEast.latitude),
+        Point middleNorth = Point.at(Coordinate.fromDegrees(area.northEast.latitude),
                 Coordinate.fromDegrees((area.southWest.longitude + area.northEast.longitude) / 2));
-        val middleNorthDistance = EarthCalc.gcd.distance(kew, middleNorth);
+        double middleNorthDistance = EarthCalc.gcd.distance(kew, middleNorth);
         assertEquals(2120d, middleNorthDistance, 1);
 
-        val middleSouth = Point.at(Coordinate.fromDegrees(area.southWest.latitude),
+        Point middleSouth = Point.at(Coordinate.fromDegrees(area.southWest.latitude),
                 Coordinate.fromDegrees((area.southWest.longitude + area.northEast.longitude) / 2));
-        val middleSouthDistance = EarthCalc.gcd.distance(kew, middleSouth);
+        double middleSouthDistance = EarthCalc.gcd.distance(kew, middleSouth);
         assertEquals(2120d, middleSouthDistance, 2);
 
-        val middleWest = Point.at(Coordinate.fromDegrees((area.northEast.latitude + area.southWest.latitude) / 2),
+        Point middleWest = Point.at(Coordinate.fromDegrees((area.northEast.latitude + area.southWest.latitude) / 2),
                 Coordinate.fromDegrees(area.northEast.longitude));
-        val middleWestDistance = EarthCalc.gcd.distance(kew, middleWest);
+        double middleWestDistance = EarthCalc.gcd.distance(kew, middleWest);
         log.info("Middle West => " + middleWestDistance);
         assertEquals(2120d, middleWestDistance, 3);
 
-        val middleEast = Point.at(Coordinate.fromDegrees((area.northEast.latitude + area.southWest.latitude) / 2),
+        Point middleEast = Point.at(Coordinate.fromDegrees((area.northEast.latitude + area.southWest.latitude) / 2),
                 Coordinate.fromDegrees(area.southWest.longitude));
-        val middleEastDistance = EarthCalc.gcd.distance(kew, middleEast);
+        double middleEastDistance = EarthCalc.gcd.distance(kew, middleEast);
         log.info("Middle East => " + middleEastDistance);
         assertEquals(2120d, middleEastDistance, 1);
     }
@@ -189,11 +189,11 @@ public class DistanceTest {
     @Test
     public void testBoundingAreaNorthPole() {
         //North Pole
-        val lat = Coordinate.fromDegrees(90d);
-        val lng = Coordinate.fromDegrees(0);
-        val northPole = Point.at(lat, lng);
+        DegreeCoordinate lat = Coordinate.fromDegrees(90d);
+        DegreeCoordinate lng = Coordinate.fromDegrees(0);
+        Point northPole = Point.at(lat, lng);
 
-        val area = EarthCalc.gcd.around(northPole, 10000);
+        BoundingArea area = EarthCalc.gcd.around(northPole, 10000);
         log.info("North East => " + area.northEast);
         log.info("South West => " + area.southWest);
 
@@ -207,11 +207,11 @@ public class DistanceTest {
     @Test
     public void testBoundingAreaNextToLondon() {
         //North Pole
-        val lat = Coordinate.fromDegrees(51.5085452);
-        val lng = Coordinate.fromDegrees(-0.1997387000000117);
-        val northPole = Point.at(lat, lng);
+        DegreeCoordinate lat = Coordinate.fromDegrees(51.5085452);
+        DegreeCoordinate lng = Coordinate.fromDegrees(-0.1997387000000117);
+        Point northPole = Point.at(lat, lng);
 
-        val area = EarthCalc.gcd.around(northPole, 5);
+        BoundingArea area = EarthCalc.gcd.around(northPole, 5);
         log.info("North East => " + area.northEast);
         log.info("South West => " + area.southWest);
 
@@ -225,11 +225,11 @@ public class DistanceTest {
     @Test
     public void testPointRadialDistanceZero() {
         //Kew
-        val lat = Coordinate.fromDegrees(51.4843774);
-        val lng = Coordinate.fromDegrees(-0.2912044);
+        DegreeCoordinate lat = Coordinate.fromDegrees(51.4843774);
+        DegreeCoordinate lng = Coordinate.fromDegrees(-0.2912044);
         Point kew = Point.at(lat, lng);
 
-        var sameKew = EarthCalc.gcd.pointAt(kew, 45, 0);
+        Point sameKew = EarthCalc.gcd.pointAt(kew, 45, 0);
         assertEquals(lat.degrees(), sameKew.latitude, 1E-10);
         assertEquals(lng.degrees(), sameKew.longitude, 1E-10);
 
@@ -245,19 +245,19 @@ public class DistanceTest {
     @Test
     public void testPointRadialDistance() {
         //Kew
-        var lat = Coordinate.fromDegrees(51.4843774);
-        var lng = Coordinate.fromDegrees(-0.2912044);
-        val kew = Point.at(lat, lng);
+        DegreeCoordinate lat = Coordinate.fromDegrees(51.4843774);
+        DegreeCoordinate lng = Coordinate.fromDegrees(-0.2912044);
+        Point kew = Point.at(lat, lng);
 
         //Richmond
         lat = Coordinate.fromDegrees(51.4613418);
         lng = Coordinate.fromDegrees(-0.3035466);
-        val richmond = Point.at(lat, lng);
+        Point richmond = Point.at(lat, lng);
 
-        val distance = EarthCalc.gcd.distance(kew, richmond);
-        val bearing = EarthCalc.gcd.bearing(kew, richmond);
+        double distance = EarthCalc.gcd.distance(kew, richmond);
+        double bearing = EarthCalc.gcd.bearing(kew, richmond);
 
-        val allegedRichmond = EarthCalc.gcd.pointAt(kew, bearing, distance);
+        Point allegedRichmond = EarthCalc.gcd.pointAt(kew, bearing, distance);
 
         assertEquals(richmond.latitude, allegedRichmond.latitude, 10E-5);
         assertEquals(richmond.longitude, allegedRichmond.longitude, 10E-5);
@@ -266,14 +266,14 @@ public class DistanceTest {
     @Test
     public void testBearing() {
         //Kew
-        var lat = Coordinate.fromDegrees(51.4843774);
-        var lng = Coordinate.fromDegrees(-0.2912044);
-        val kew = Point.at(lat, lng);
+        DegreeCoordinate lat = Coordinate.fromDegrees(51.4843774);
+        DegreeCoordinate lng = Coordinate.fromDegrees(-0.2912044);
+        Point kew = Point.at(lat, lng);
 
         //Richmond, London
         lat = Coordinate.fromDegrees(51.4613418);
         lng = Coordinate.fromDegrees(-0.3035466);
-        val richmond = Point.at(lat, lng);
+        Point richmond = Point.at(lat, lng);
 
         System.out.println(EarthCalc.gcd.bearing(kew, richmond));
         assertEquals(EarthCalc.gcd.bearing(kew, richmond), 198.4604614570758D, 10E-5);
@@ -292,13 +292,13 @@ public class DistanceTest {
          * but the correct result is 19.213575108209017
          */
 
-        var lat = Coordinate.fromDegrees(31.194326398628462);
-        var lng = Coordinate.fromDegrees(121.42127048962534);
-        val standpoint = Point.at(lat, lng);
+        DegreeCoordinate lat = Coordinate.fromDegrees(31.194326398628462);
+        DegreeCoordinate lng = Coordinate.fromDegrees(121.42127048962534);
+        Point standpoint = Point.at(lat, lng);
 
         lat = Coordinate.fromDegrees(31.194353394639606);
         lng = Coordinate.fromDegrees(121.4212814985147);
-        val forepoint = Point.at(lat, lng);
+        Point forepoint = Point.at(lat, lng);
 
         /**
          * http://www.movable-type.co.uk/scripts/latlong.html
@@ -311,14 +311,14 @@ public class DistanceTest {
     @Test
     public void testVincentyBearing() {
         //Kew
-        var lat = Coordinate.fromDegrees(51.4843774);
-        var lng = Coordinate.fromDegrees(-0.2912044);
-        val kew = Point.at(lat, lng);
+        DegreeCoordinate lat = Coordinate.fromDegrees(51.4843774);
+        DegreeCoordinate lng = Coordinate.fromDegrees(-0.2912044);
+        Point kew = Point.at(lat, lng);
 
         //Richmond, London
         lat = Coordinate.fromDegrees(51.4613418);
         lng = Coordinate.fromDegrees(-0.3035466);
-        val richmond = Point.at(lat, lng);
+        Point richmond = Point.at(lat, lng);
 
         //comparing to results from http://www.movable-type.co.uk/scripts/latlong.html
         assertEquals(EarthCalc.vincenty.bearing(kew, richmond), Coordinate.fromDMS(198, 30, 19.58).degrees(), 10E-5);
@@ -328,16 +328,16 @@ public class DistanceTest {
     @Test
     public void testMidPoint() {
         //Kew
-        var lat = Coordinate.fromDegrees(51.4843774);
-        var lng = Coordinate.fromDegrees(-0.2912044);
-        val kew = Point.at(lat, lng);
+        DegreeCoordinate lat = Coordinate.fromDegrees(51.4843774);
+        DegreeCoordinate lng = Coordinate.fromDegrees(-0.2912044);
+        Point kew = Point.at(lat, lng);
 
         //Richmond, London
         lat = Coordinate.fromDegrees(51.4613418);
         lng = Coordinate.fromDegrees(-0.3035466);
-        val richmond = Point.at(lat, lng);
+        Point richmond = Point.at(lat, lng);
 
         //comparing to results from http://www.movable-type.co.uk/scripts/latlong.html
-        assertEquals(EarthCalc.gcd.midPoint(richmond, kew), Point.at(Coordinate.fromDegrees(51.47285976194266), Coordinate.fromDegrees(-0.2973770580524634)));
+        assertEquals(EarthCalc.gcd.midPoint(richmond, kew), Point.at(Coordinate.fromDegrees(51.47285976194265), Coordinate.fromDegrees(-0.2973770580524634)));
     }
 }

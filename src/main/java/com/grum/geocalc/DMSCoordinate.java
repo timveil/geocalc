@@ -49,7 +49,7 @@ public class DMSCoordinate extends Coordinate {
 
     @Override
     double degrees() {
-        var decimalDegrees = abs(wholeDegrees) + minutes / 60 + seconds / 3600;
+        double decimalDegrees = abs(wholeDegrees) + minutes / 60 + seconds / 3600;
 
         if (wholeDegrees < 0) {
             decimalDegrees = -decimalDegrees;
